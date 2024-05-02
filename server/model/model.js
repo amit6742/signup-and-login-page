@@ -13,8 +13,9 @@ const UserSchema = new mongoose.Schema({
     },
     required: true,
   },
-  password: { type: String, minLength: 6, required: true },
   phone: { type: Number, minLength: 8,  required: true },
+  password: { type: String, minLength: 6, required: true },
+
 });
 
 const User = mongoose.model("User", UserSchema);

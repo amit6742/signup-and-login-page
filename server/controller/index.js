@@ -1,7 +1,7 @@
 const bcrypt = require("bcrypt");
 const User = require("../model/model");
 exports.createUser = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, phone, password } = req.body;
 
   try {
     const hashPassword = bcrypt.hashSync(password, 10);

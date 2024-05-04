@@ -1,46 +1,21 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-
-import { auth, useAuth, upload } from "./firebase";
+import { auth } from "./firebase";
 import Profile from "./Profile";
+import QrCode from "./QrCode";
 
 const Registration = () => {
-  const currentUser = useAuth();
-  const [loading, setLoading] = useState(false)
   const [user, setUser] = useState({
     name: "",
     email: "",
     phone: "",
     password: "",
+   url:""
   });
   const navigate = useNavigate();
   const [submitButtonDisable, setSubmitButtonDisable] = useState(false);
-  const [photoURL, setPhotoURL] = useState("https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg");
-  const [photo, setPhoto] = useState(null)
-
-  useEffect(() => {
-    if (currentUser?.photoURL) {
-      console.log(currentUser)
-      setPhotoURL(currentUser.photoURL);
-    }
-  }, [currentUser]);
-
-  const handleProfile = (e) => {
-    if(e.target.files[0]){
-      setPhoto(e.target.files[0])
-
-    }
-  
-
-
-
-  };
-
-  const handleBtn = () => {
-    upload(photo, currentUser, setLoading)
-  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,42 +51,23 @@ const Registration = () => {
   };
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 w-full ">
-      <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div className="h-5">
+    <section className="bg-gray-50 dark:bg-gray-900  ">
+      <div className="flex flex-col items-center justify-center mx-auto lg:py-0">
         <a
           href="#"
           className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
         ></a>
-        <Profile />
+
         <div className="w-full  bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white justify-center text-center">
               Create an account
             </h1>
             <form className="space-y-4 md:space-y-6 ">
-              {/* profile sections */}
-              <div>
-                <a
-                  href="#"
-                  className="flex items-center justify-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white"
-                >
-                  <img
-                    className="w-8 h-8 mr-2 rounded-full"
-                    src={photoURL}
-                    alt="logo"
-                  />
-                </a>
 
-                <input type="file" onChange={handleProfile} />
-                <button
-                disabled={loading || !photo }
-                  type="button"
-                  onClick={handleBtn}
-                  className=" py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  upload
-                </button>
-              </div>
+            {/* updating user profile picture components */}
+              <Profile />
 
               <div>
                 <label
@@ -132,6 +88,7 @@ const Registration = () => {
               </div>
 
               <div>
+              
                 <label
                   htmlFor="email"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -168,8 +125,13 @@ const Registration = () => {
                 />
               </div>
 
+            
+             
+              
+
               <div>
                 <label
+                
                   htmlFor="password"
                   className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >
@@ -229,7 +191,17 @@ const Registration = () => {
           </div>
         </div>
       </div>
+
+  
+    
+       
+      
+
+      <QrCode/>
+    
     </section>
+   
+    </div>
   );
 };
 

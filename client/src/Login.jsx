@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword,  } from "firebase/auth";
-
+import Profile from "./Profile";
 import { auth } from "./firebase";
 
 const Registration = () => {
@@ -27,7 +27,7 @@ const Registration = () => {
         .post("http://localhost:8080/login/v1", user)
         .then((res) => console.log(res));
       alert("login Successfully");
-      navigate("/");
+      navigate("/welcome");
       setSubmitButtonDisable(true);
 
     signInWithEmailAndPassword(auth, user.email, user.password).then(
@@ -59,6 +59,8 @@ const Registration = () => {
              Login account
             </h1>
             <form className="space-y-4 md:space-y-6">
+
+            <Profile />
            
 
               <div>
@@ -129,9 +131,9 @@ const Registration = () => {
                  Login
               </button>
               <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                Already have an account? {"    "}
+                create  an account? {"    "}
                 <Link
-                  to="/register"
+                  to="/"
                   type="submit"
                   className="font-medium text-primary-600 hover:underline "
                 >

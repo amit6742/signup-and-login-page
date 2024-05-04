@@ -16,6 +16,12 @@ const UserSchema = new mongoose.Schema({
   phone: { type: Number, minLength: 8,  required: true },
   password: { type: String, minLength: 6, required: true },
 
+  url: {
+    type: mongoose.Schema.Types.ObjectId,
+   
+  
+  }
+
 });
 
 const User = mongoose.model("User", UserSchema);

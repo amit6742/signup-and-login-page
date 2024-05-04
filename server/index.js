@@ -28,6 +28,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/register",  userRouter.router);
 app.use("/login",  userRouter.router);
+app.use("/api", userRouter.router)
 
 
 

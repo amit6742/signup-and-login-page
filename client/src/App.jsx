@@ -7,8 +7,10 @@ import { useEffect, useState } from 'react'
 import { auth } from './firebase'
 
 
+
 const App = () => {
   const [userName, setUserName] = useState("")
+
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
       if(user){
@@ -20,12 +22,16 @@ const App = () => {
     })
   },[])
   return (
-    <div>
+    <div >
+  
+   
       <BrowserRouter>
       <Routes>
-        <Route path='/register' element={<Registration/>}/>
+        <Route path='/' element={<Registration  /> }/>
         <Route path='/login' element={<Login/>}/>
-        <Route path='/' element={<Home name={userName} />}/>
+        <Route path='/welcome' element={<Home name={userName} />}/>
+       
+        
         
        
       </Routes>

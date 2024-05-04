@@ -1,8 +1,20 @@
 const bcrypt = require("bcrypt");
 const User = require("../model/model");
 const jwt = require("jsonwebtoken");
+const QrCode = require("qrcode");
+
+exports.scanQrcode = (req, res) => {
+  const url = req.body.url;
+  if (url.length === 0) {
+    res.send("empty data");
+  }
+  QrCode.toDataURL(url, function (err, url) {
+    console.log(url);
+    res.send(url);
+  });
+};
 exports.createUser = async (req, res) => {
-  const { name, email, phone, password } = req.body;
+  const { name, email, phone, password, url } = req.body;
 
   try {
     const hashPassword = bcrypt.hashSync(password, 10);
@@ -10,11 +22,15 @@ exports.createUser = async (req, res) => {
       name,
       email,
       phone,
+  
+
       password: hashPassword,
     });
+    
+
     var token = jwt.sign({ email: req.body.email }, process.env.SECRET);
     newUser.token = token;
-    
+
     const saveUser = await newUser.save();
     res.status(201).json(saveUser);
     console.log(saveUser);

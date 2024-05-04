@@ -26,7 +26,7 @@ const auth = ((req, res, next) => {
 });
 
 app.use(cors({
-  origin: "",
+  origin: [""],
   credentials: true,
   methods: ["GET,POST"],
 }))

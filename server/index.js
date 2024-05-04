@@ -2,6 +2,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path")
 const userRouter = require("../server/routes/index");
 const app = express();
 require("dotenv").config();
@@ -24,11 +25,17 @@ const auth = ((req, res, next) => {
   }
 });
 
+// middle wares
 app.use(cors());
 app.use(express.json());
 app.use("/register",  userRouter.router);
 app.use("/login",  userRouter.router);
 app.use("/api", userRouter.router)
+app.use(express.static(path.join(__dirname, '../client/dist')))
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/dist/index.html'))
+})
 
 
 

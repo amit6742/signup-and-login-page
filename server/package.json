@@ -10,7 +10,7 @@
     "nodemon": "^3.1.0",
     "qrcode": "^1.5.3"
   },
-  "name": "dummy-server",
+  "name": "signup-and-login-page",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {

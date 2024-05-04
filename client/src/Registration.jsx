@@ -27,7 +27,7 @@ const Registration = () => {
     e.preventDefault();
     if (name && email && phone && password) {
       axios
-        .post("http://localhost:8080/register", user)
+        .post("https://signup-and-login-page-1rir.vercel.app/register", user)
         .then((res) => console.log(res));
       alert("register Successfully");
       setSubmitButtonDisable(true);

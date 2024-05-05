@@ -25,6 +25,15 @@ const auth = ((req, res, next) => {
   }
 });
 
+<<<<<<< HEAD
+=======
+app.use(cors({
+  origin: [""],
+  credentials: true,
+  methods: ["GET,POST"],
+}))
+
+>>>>>>> 98578f3cc72c991f6e976d2c251ad211e3d436ee
 // middle wares
 app.use(cors());
 app.use(express.json());

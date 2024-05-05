@@ -25,12 +25,6 @@ const auth = ((req, res, next) => {
   }
 });
 
-app.use(cors({
-  origin: "https://signup-and-login-page-henna.vercel.app/",
-  credentials: true,
-  methods: ["GET,POST"],
-}))
-
 // middle wares
 app.use(cors());
 app.use(express.json());

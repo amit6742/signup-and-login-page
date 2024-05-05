@@ -27,7 +27,7 @@ const Registration = () => {
     e.preventDefault();
     if (name && email && phone && password) {
       axios
-        .post("http://localhost:8080/register", user)
+        .post("http://localhost:8080/login/register", user)
         .then((res) => console.log(res));
       alert("register Successfully");
       setSubmitButtonDisable(true);
